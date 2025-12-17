@@ -44,37 +44,40 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDORxh9OgzkCtB9UApxek5f_ohXTZ0zgiA',
-    appId: '1:553864015162:web:0ce0a62352d31198eaf403',
-    messagingSenderId: '553864015162',
-    projectId: 'fir-project-204c7',
-    authDomain: 'fir-project-204c7.firebaseapp.com',
-    storageBucket: 'fir-project-204c7.firebasestorage.app',
+    apiKey: 'AIzaSyBuMnQJGcQgqlCnN_G8Y8d99N4fzM1Jt5w',
+    appId: '1:7027983878:web:24506bdca9233b9b096587',
+    messagingSenderId: '7027983878',
+    projectId: 'machintask-ad831',
+    authDomain: 'machintask-ad831.firebaseapp.com',
+    storageBucket: 'machintask-ad831.firebasestorage.app',
+    measurementId: 'G-1M7BF3HM28',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCizGJNWzDUcdrxfdv870_b5tDaGIqi184',
-    appId: '1:553864015162:android:9ad1e0edd867a99eeaf403',
-    messagingSenderId: '553864015162',
-    projectId: 'fir-project-204c7',
-    storageBucket: 'fir-project-204c7.firebasestorage.app',
+    apiKey: 'AIzaSyATjmkAXxyA7abxw0fN_CBUowoLp0BGD7I',
+    appId: '1:7027983878:android:3417735b4ff19ee6096587',
+    messagingSenderId: '7027983878',
+    projectId: 'machintask-ad831',
+    storageBucket: 'machintask-ad831.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyA098JgguojwFpz-HhLb9zTnXOLqsGusRE',
-    appId: '1:553864015162:ios:521aba68f21bbfa5eaf403',
-    messagingSenderId: '553864015162',
-    projectId: 'fir-project-204c7',
-    storageBucket: 'fir-project-204c7.firebasestorage.app',
+    apiKey: 'AIzaSyDo-QCZ3IHIWrm3RBfXKAwd55HRaiNjX0k',
+    appId: '1:7027983878:ios:a210f73c40c73837096587',
+    messagingSenderId: '7027983878',
+    projectId: 'machintask-ad831',
+    storageBucket: 'machintask-ad831.firebasestorage.app',
     iosBundleId: 'com.example.machinTask',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyDORxh9OgzkCtB9UApxek5f_ohXTZ0zgiA',
-    appId: '1:553864015162:web:f2fa6bd6e4f095caeaf403',
-    messagingSenderId: '553864015162',
-    projectId: 'fir-project-204c7',
-    authDomain: 'fir-project-204c7.firebaseapp.com',
-    storageBucket: 'fir-project-204c7.firebasestorage.app',
+    apiKey: 'AIzaSyBuMnQJGcQgqlCnN_G8Y8d99N4fzM1Jt5w',
+    appId: '1:7027983878:web:fb240be4800b895f096587',
+    messagingSenderId: '7027983878',
+    projectId: 'machintask-ad831',
+    authDomain: 'machintask-ad831.firebaseapp.com',
+    storageBucket: 'machintask-ad831.firebasestorage.app',
+    measurementId: 'G-0ER04SFZKW',
   );
+
 }

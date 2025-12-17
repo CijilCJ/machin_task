@@ -5,12 +5,12 @@ class CourseService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final String _collection = 'courses';
 
-  /// 🔹 Add Course (Admin)
+  // Add Course (Admin)
   Future<void> addCourse(CourseModel course) async {
     await _firestore.collection(_collection).add(course.toMap());
   }
 
-  /// 🔹 Get All Courses
+  // Get All Courses
   Future<List<CourseModel>> getAllCourses() async {
     final snapshot = await _firestore
         .collection(_collection)
@@ -22,7 +22,7 @@ class CourseService {
         .toList();
   }
 
-  /// 🔹 Get Free Courses Only
+  //  Get Free Courses Only
   Future<List<CourseModel>> getFreeCourses() async {
     final snapshot = await _firestore
         .collection(_collection)
@@ -34,7 +34,7 @@ class CourseService {
         .toList();
   }
 
-  /// 🔹 Get Course By ID
+  // Get Course By ID
   Future<CourseModel?> getCourseById(String courseId) async {
     final doc =
         await _firestore.collection(_collection).doc(courseId).get();
@@ -44,7 +44,7 @@ class CourseService {
     return CourseModel.fromMap(doc.data()!, doc.id);
   }
 
-  /// 🔹 Update Course (Admin)
+  // Update Course (Admin)
   Future<void> updateCourse(String courseId, CourseModel course) async {
     await _firestore
         .collection(_collection)
@@ -52,7 +52,7 @@ class CourseService {
         .update(course.toMap());
   }
 
-  /// 🔹 Delete Course (Admin)
+  // Delete Course (Admin)
   Future<void> deleteCourse(String courseId) async {
     await _firestore.collection(_collection).doc(courseId).delete();
   }

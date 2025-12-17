@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:machin_task/view/admin/controller/course_controller.dart';
 import 'package:machin_task/view/admin/model/course_model.dart';
+import 'package:machin_task/view/user/student_profile.dart';
 import 'package:provider/provider.dart';
 
 
@@ -29,6 +30,16 @@ class _StudentDashboardState extends State<StudentDashboard> {
         backgroundColor: const Color.fromARGB(255, 47, 59, 65),
         foregroundColor: Colors.amber,
         centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (_)=>StudentProfile()));
+            }, 
+            icon: CircleAvatar(
+
+            )
+          )
+        ],
       ),
       body: Consumer<CourseController>(
         builder: (context, controller, child) {
@@ -84,9 +95,9 @@ class _StudentDashboardState extends State<StudentDashboard> {
                   ),
                 ),
 
-                const SizedBox(height: 24),
+                 SizedBox(height: 24),
 
-                const Text(
+                 Text(
                   "Free Courses",
                   style: TextStyle(
                     fontSize: 18,
@@ -94,7 +105,7 @@ class _StudentDashboardState extends State<StudentDashboard> {
                   ),
                 ),
 
-                const SizedBox(height: 12),
+                 SizedBox(height: 12),
 
                 // Courses List
                 ListView.builder(
@@ -102,8 +113,8 @@ class _StudentDashboardState extends State<StudentDashboard> {
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: controller.courses.length,
                   itemBuilder: (context, index) {
-                    final CourseModel course =
-                        controller.courses[index];
+                  final CourseModel course =
+                  controller.courses[index];
 
                     return Card(
                       elevation: 4,
@@ -130,7 +141,7 @@ class _StudentDashboardState extends State<StudentDashboard> {
                           size: 16,
                         ),
                         onTap: () {
-                          // TODO: Navigate to course details
+                          
                         },
                       ),
                     );
@@ -144,194 +155,3 @@ class _StudentDashboardState extends State<StudentDashboard> {
     );
   }
 }
-
-
-
-
-
-
-// Nested(
-//   children: [], // ❌ EMPTY LIST → CRASH
-// )
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import 'package:flutter/foundation.dart';
-// import 'package:flutter/material.dart';
-
-// class StudentDashBoard extends StatelessWidget {
-//   const StudentDashBoard({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text("Dashboard"),
-//         actions: [
-//           IconButton(onPressed: (){}, icon: CircleAvatar())
-//         ],
-//       ),
-//       body: ListView(
-//         children: [
-//           Padding(
-//             padding: const EdgeInsets.all(8.0),
-//             child: Container(
-//               height: 350,
-//               width: double.infinity,
-//               child: Column(
-//                 children: [
-//                   Text("Course Attendance"),
-//                   Text("Last Seven Days"),
-//                   Stack(
-//               alignment: Alignment.center,
-//               children: [
-//                 SizedBox(
-//                   width: 150,
-//                   height: 150,
-//                   child: CircularProgressIndicator(
-//                     value: 2,
-//                     strokeWidth: 12,
-//                     backgroundColor: Colors.grey.shade300,
-//                     color: Colors.blue,
-//                   ),
-//                 ),
-//                 ]),
-//                 Row(
-//                   children: [
-//                     CircleAvatar(),
-//                     Text("Present"),
-//                     CircleAvatar(),
-//                     Text("leave"),
-//                   ],
-//                 )
-//                 ],
-//               ),
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
-
-// import 'package:flutter/material.dart';
-
-// class StudentDashBoard extends StatelessWidget {
-//   const StudentDashBoard({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     double attendance = 0.75;
-//     Color progressColor =
-//         attendance >= 0.5 ? Colors.green : Colors.red;
-
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text("Dashboard"),
-//         actions: [
-//           IconButton(
-//             onPressed: () {},
-//             icon: const CircleAvatar(
-//               backgroundColor: Colors.green,
-//               child: Icon(Icons.person, color: Colors.white),
-//             ),
-//           )
-//         ],
-//       ),
-//       body: ListView(
-//         padding: const EdgeInsets.all(12),
-//         children: [
-//           Container(
-//             height: 350,
-//             padding: const EdgeInsets.all(16),
-//             decoration: BoxDecoration(
-//               borderRadius: BorderRadius.circular(16),
-//               color: Colors.white,
-//               boxShadow: [
-//                 BoxShadow(
-//                   color: Colors.grey.shade300,
-//                   blurRadius: 6,
-//                 )
-//               ],
-//             ),
-//             child: Column(
-//               children: [
-//                 const Text(
-//                   "Course Attendance",
-//                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-//                 ),
-//                 const Text(
-//                   "Last Seven Days",
-//                   style: TextStyle(color: Colors.grey),
-//                 ),
-//                 const SizedBox(height: 20),
-
-//                 Stack(
-//                   alignment: Alignment.center,
-//                   children: [
-//                     SizedBox(
-//                       width: 150,
-//                       height: 150,
-//                       child: CircularProgressIndicator(
-//                         value: attendance,
-//                         strokeWidth: 12,
-//                         backgroundColor: Colors.red.shade100,
-//                         color: progressColor,
-//                       ),
-//                     ),
-//                     Text(
-//                       "${(attendance * 100).toInt()}%",
-//                       style: const TextStyle(
-//                         fontSize: 24,
-//                         fontWeight: FontWeight.bold,
-//                       ),
-//                     ),
-//                   ],
-//                 ),
-
-//                 SizedBox(height: 25),
-
-//                 Row(
-//                   mainAxisAlignment: MainAxisAlignment.center,
-//                   children: [
-//                     Row(
-//                       children: const [
-//                         CircleAvatar(
-//                           radius: 6,
-//                           backgroundColor: Colors.green,
-//                         ),
-//                         SizedBox(width: 6),
-//                         Text("Present"),
-//                       ],
-//                     ),
-//                     const SizedBox(width: 20),
-//                     Row(
-//                       children: const [
-//                         CircleAvatar(
-//                           radius: 6,
-//                           backgroundColor: Colors.red,
-//                         ),
-//                         SizedBox(width: 6),
-//                         Text("Leave"),
-//                       ],
-//                     ),
-//                   ],
-//                 ),
-//               ],
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }

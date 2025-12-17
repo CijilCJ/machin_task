@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:machin_task/view/user/bottom_nav_bar.dart';
 import 'package:machin_task/view/user/student_dash_board.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -219,7 +220,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                     ),
                     onPressed: (){
-                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=>StudentDashboard()));
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=> const BottomNavBar()));
                     },
                     child: isLoading
                         ? const CircularProgressIndicator(

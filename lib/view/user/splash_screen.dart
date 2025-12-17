@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:machin_task/view/admin/screen/home_screen.dart';
 import 'package:machin_task/view/sign_in_screen.dart';
+import 'package:machin_task/view/user/bottom_nav_bar.dart';
 import 'package:machin_task/view/user/student_dash_board.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -47,7 +48,7 @@ class _SplashScreenState extends State<SplashScreen> {
       } else {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (_) => StudentDashboard()),
+          MaterialPageRoute(builder: (_) => BottomNavBar()),
         );
       }
     }

@@ -4,6 +4,7 @@ import 'package:machin_task/view/admin/controller/course_controller.dart';
 import 'package:machin_task/view/admin/screen/home_screen.dart';
 import 'package:machin_task/view/admin/screen/view_all_course_screen.dart';
 import 'package:machin_task/view/user/splash_screen.dart';
+import 'package:machin_task/view/user/student_dash_board.dart';
 import 'package:machin_task/view/user/student_profile.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
     ],
     child:MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: AllCoursesScreen(),
+      home: SplashScreen(),
     )
     );
   }

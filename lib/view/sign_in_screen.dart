@@ -1,8 +1,11 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:machin_task/view/sign_up_screen.dart';
+import 'package:machin_task/view/user/bottom_nav_bar.dart';
 
 
 class LoginScreen extends StatefulWidget {
@@ -13,58 +16,68 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final GoogleSignIn signIn=GoogleSignIn.instance;
   bool isLoading = false;
 
   
-
-  Future<void> googleLogin() async {
+Future<void> googleLogin() async {
     try {
       setState(() => isLoading = true);
 
       // Google sign-in
       // final GoogleSignInAccount? googleUser =
-      //     await   ;
+      //     await GoogleSignIn().signIn();
+      
+      await signIn.initialize(
+        serverClientId: "7027983878-a9aomlgj5hkcvpl2kpfkl4j4e3hauupg.apps.googleusercontent.com"
+      );
+      final account=await signIn.authenticate();
 
-      // if (googleUser == null) {
-      //   setState(() => isLoading = false);
-      //   return;
-      // }
+      if (account == null) {
+        setState(() => isLoading = false);
+        return;
+      }
 
-      // final GoogleSignInAuthentication googleAuth =
-      //     await googleUser.authentication;
+      final  googleAuth =
+          await account.authentication;
 
-      // final credential = GoogleAuthProvider.credential(
-      //   accessToken: googleAuth.accessToken,
-      //   idToken: googleAuth.idToken,
-      // );
+      final credential = GoogleAuthProvider.credential(
+        idToken: googleAuth.idToken,
+      );
 
       // Firebase login
-      // UserCredential userCred = await FirebaseAuth.instance
-      //     .signInWithCredential(credential);
+      UserCredential userCred = await FirebaseAuth.instance
+          .signInWithCredential(credential);
 
-      // final user = userCred.user!;
-      // final userRef = FirebaseFirestore.instance
-      //     .collection('users')
-      //     .doc(user.uid);
+      final user = userCred.user!;
+      final userRef = FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid);
 
       // Create user if first time
-      // final snapshot = await userRef.get();
-      // if (!snapshot.exists) {
-      //   await userRef.set({
-      //     'name': user.displayName,
-      //     'email': user.email,
-      //     'role': 'student', // default role
-      //     'profileImage': user.photoURL ?? '',
-      //     'createdAt': Timestamp.now(),
-      //   });
-      // }
+      final snapshot = await userRef.get();
+      if (!snapshot.exists) {
+        await userRef.set({
+          'name': user.displayName,
+          'email': user.email,
+          'role': 'student'??'admin', // default role
+          'profileImage': user.photoURL ?? '',
+          'createdAt': Timestamp.now(),
+        });
+      }
 
-      // Go back to splash (role check)
-      Navigator.pushReplacementNamed(context, '/splash');
-    } catch (e) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text('Login failed')));
+      Navigator.push(context, MaterialPageRoute(builder: (_)=>BottomNavBar()));
+      
+    } on GoogleAuthProvider{
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Login failed')),
+      );
+      log(e.toString());
+    }catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Login failed')),
+      );
+      log(e.toString());
     } finally {
       setState(() => isLoading = false);
     }
@@ -179,8 +192,7 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
         password: passwordController.text.trim(),
       );
 
-      // Splash screen will handle navigation
-      Navigator.pushReplacementNamed(context, '/splash');
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=>SignUpScreen()));
 
     } on FirebaseAuthException catch (e) {
       String message = "Login failed";
